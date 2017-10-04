@@ -38,7 +38,7 @@ students.route('/students')
     .post(StudentsCtrl.addStudent);
 
 students.route('/students/:id')
-    .get(StudentsCtrl.findById)
+    .get(StudentsCtrl.findStudentById)
     .put(StudentsCtrl.updateStudent)
     .delete(StudentsCtrl.deleteStudent);
 
