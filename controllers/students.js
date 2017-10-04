@@ -59,7 +59,7 @@ exports.deleteStudent = function (req, res) {
 //PUT - Update a register that already exists
 exports.updateStudent = function (req, res) {
     Student.findById(req.params.id, function (err, student) {
-        student.nombre  = req.body.petId;
+        student.nombre  = req.body.nombre;
         student.apellido    = req.body.apellido;
         student.edad = req.body.edad;
         student.genero  = req.body.genero;
