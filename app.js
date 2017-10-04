@@ -18,8 +18,9 @@ app.use(methodOverride());
 
 //Controllers y modelos
 var models = require('./models/student')(app, mongoose);
+var models = require('./models/subject')(app, mongoose);
 var StudentsCtrl = require('./controllers/students.js');
-
+var SubjectsCtrl = require('./controllers/subjects.js');
 
 //Example Route
 var router = express.Router();
@@ -30,6 +31,7 @@ app.use(router);
 
 //API Students Routes
 var students = express.Router();
+app.use('/api', students);
 
 students.route('/students')
     .get(StudentsCtrl.findAllStudents)
@@ -40,7 +42,19 @@ students.route('/students/:id')
     .put(StudentsCtrl.updateStudent)
     .delete(StudentsCtrl.deleteStudent);
 
-app.use('/api', students);
+
+
+var subjects = express.Router();
+app.use('/api', subjects);
+
+subjects.route('/subjects')
+    .get(SubjectsCtrl.findAllSubjects)
+    .post(SubjectsCtrl.addSubject);
+
+subjects.route('/subjects/:id')
+    .get(SubjectsCtrl.findSubjectById)
+    .put(SubjectsCtrl.updateSubject)
+    .delete(SubjectsCtrl.deleteSubject);
 
 //Start server
 app.listen(3000, function() {
