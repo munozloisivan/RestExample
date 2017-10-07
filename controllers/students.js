@@ -17,8 +17,8 @@ exports.findAllStudents = function (req,res) {
 };
 
 //GET - Return a Student with specified ID
-exports.findStudentById = function(req, res) {
-    Student.findStudentById(req.params.id, function(err, student) {
+exports.findById = function(req, res) {
+    Student.findById(req.params.id, function(err, student) {
         if(err) return res.send(500, err.message);
 
         console.log('GET /student/' + req.params.id);
@@ -47,7 +47,7 @@ exports.addStudent = function (req, res) {
 
 //DELETE - Delete Student with this ID
 exports.deleteStudent = function (req, res) {
-    Student.findStudentById(req.params.id, function (err, student) {
+    Student.findById(req.params.id, function (err, student) {
         student.remove(function (err) {
             if(err)
                 return res.status(500).send(err.message);
@@ -58,7 +58,7 @@ exports.deleteStudent = function (req, res) {
 
 //PUT - Update a register that already exists
 exports.updateStudent = function (req, res) {
-    Student.findStudentById(req.params.id, function (err, student) {
+    Student.findById(req.params.id, function (err, student) {
         student.nombre  = req.body.nombre;
         student.apellido    = req.body.apellido;
         student.edad = req.body.edad;
